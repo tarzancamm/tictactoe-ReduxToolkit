@@ -29,7 +29,7 @@ const HomeScreen = () => {
         return `${arr[a]} won!`;
       }
     }
-    return "Who will win?";
+    return "";
   };
 
   return (
