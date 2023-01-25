@@ -1,8 +1,15 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { tictacActions } from "../store/tictacslice";
+import Square from "../components/Square";
 
 const HomeScreen = () => {
-    const squares = useSelector((state) => state.tictac.squares)
+  const dispatch = useDispatch();
+  const squares = useSelector((state) => state.tictac.squares);
+
+  const resetHandler = () => {
+    dispatch(tictacActions.reset());
+  };
 
   const calculateWinner = (arr) => {
     const lines = [
@@ -27,19 +34,15 @@ const HomeScreen = () => {
 
   return (
     <div className="page">
+      <button className="reset-btn" onClick={resetHandler}>
+        Reset
+      </button>
       <div className="tac-container">
-        <div className="tac-square"></div>
-        <div className="tac-square"></div>
-        <div className="tac-square"></div>
-        <div className="tac-square"></div>
-        <div className="tac-square"></div>
-        <div className="tac-square"></div>
-        <div className="tac-square"></div>
-        <div className="tac-square"></div>
-        <div className="tac-square"></div>
+        {squares.map((value, index) => {
+          return <Square squareValue={value} index={index} />;
+        })}
       </div>
-      <button>Reset</button>
-      <h4>{calculateWinner(squares)}</h4>
+      <h4 className="winner">{calculateWinner(squares)}</h4>
     </div>
   );
 };

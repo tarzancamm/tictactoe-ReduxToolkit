@@ -9,19 +9,14 @@ const tictacSlice = createSlice({
   name: "tictac",
   initialState,
   reducers: {
-    setSquare(state) {
-        if ()
-        if (state.player) {
-            state.squares
-        }
+    setSquare(state, action) {
+      state.squares.splice(action.payload.index, 1, action.payload.sign);
+      state.player = !state.player;
     },
     reset(state) {
-      (state.squares = ["", "", "", "", "", "", "", "", ""]),
+      (state.squares = ["", "", "", "", "", "", "", "", ""]);
         (state.player = true);
     },
-    changePlayer(state) {
-        state.player = !state.player
-    }
   },
 });
 
